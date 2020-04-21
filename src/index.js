@@ -1,6 +1,7 @@
-import items from './data/items';
-import createItemsList from './components/items-list-view'
+import { items } from './data/items';
+import { createItemsList, searchElement } from './components/items-list-view'
 
 (async() => {
-    await createItemsList(items);
+    await createItemsList(items, searchElement);
+    await searchElement();
 })();

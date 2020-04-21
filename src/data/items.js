@@ -1,4 +1,4 @@
-[
+export const items = [
     {
       "name": "Адамантиновый доспех (Adamantine armor)",
       "source": "Dungeon master's guide",

@@ -17,15 +17,14 @@
   <nav class="navbar navbar-dark bg-dark">
       <a class="navbar-brand" href="#">Items</a>
       <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <input class="form-control mr-sm-2" id="search" type="search" value="" placeholder="Search" aria-label="Search">
       </form>
   </nav>
   <div class="items-scroll">
-      <div class="d-flex bd-highlight border bg-light">
-          <div class="p-2 flex-grow-1 bd-highlight">Название</div>
-          <div class="p-2 bd-highlight">Описание</div>
-          <div class="p-2 bd-highlight">Вид</div>
+      <div class="d-flex justify-content-between bd-highlight border bg-light">
+          <div class="p-2 col-2 bd-highlight">Название</div>
+          <div class="p-2 col-6 bd-highlight">Описание</div>
+          <div class="p-2 col-1 bd-highlight">Вид</div>
       </div>
   </div>
 
