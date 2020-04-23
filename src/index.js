@@ -4,9 +4,7 @@ import { createItemsList, getItemsForSearch } from './components/items-list-view
 (async() => {
     await createItemsList(items);
 
-    async function searchElement(itemsSearch) {
-        let val = document.querySelector('#search').value.toLowerCase().trim();
-
+    async function searchElement(itemsSearch, val) {
         if(val != '') {
             itemsSearch.forEach(item => {
                 const child = item.querySelector('.p-2', '.col-2');

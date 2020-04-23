@@ -25,5 +25,8 @@ export function createItemsList(items) {
 
 export function getItemsForSearch(searchElement) {
     const items = document.querySelectorAll('.d-flex', '.shadow');
-    document.querySelector('#search').oninput = searchElement(items);
+    document.querySelector('#search').oninput = () => {
+        let val = document.querySelector('#search').value.toLowerCase().trim();
+        searchElement(items, val);
+    }
 }
