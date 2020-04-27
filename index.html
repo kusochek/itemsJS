@@ -14,11 +14,29 @@
     <title>items</title>
 </head>
 <body>
-  <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Items</a>
-      <form class="form-inline">
-        <input class="form-control mr-sm-2" id="search" type="search" value="" placeholder="Search" aria-label="Search">
-      </form>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Магические предметы</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <button class="btn btn-secondary dropdown-toggle mr-2 ml" type="button" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Вид
+                </button>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <button class="dropdown-item" type="button">Обычный</button>
+                    <button class="dropdown-item" type="button">Необычный</button>
+                    <button class="dropdown-item" type="button">Редкий</button>
+                    <button class="dropdown-item" type="button">Очень редкий</button>                        
+                    <button class="dropdown-item" type="button">Легендарный</button>
+                    <button class="dropdown-item" type="button">Качество варьируется</button>
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" id="search" type="search" value="" placeholder="Search" aria-label="Search">
+        </form>
+    </div>
+
   </nav>
   <div class="items-scroll">
       <div class="d-flex justify-content-between bd-highlight border bg-light">

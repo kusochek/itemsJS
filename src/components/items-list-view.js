@@ -1,3 +1,8 @@
+export function addClassToTdElem() {
+    const tdList = document.querySelectorAll('td');
+    tdList.forEach(item => item.classList.add('pr-3'));
+}
+
 export function createItemsList(items) {
     const itemContent = document.querySelector('.items-scroll');
 
@@ -7,10 +12,10 @@ export function createItemsList(items) {
         const createDivElementForDescription = document.createElement('div');
         const createDivElementForQuality = document.createElement('div');
 
-        createFlexDivElem.classList.add('d-flex', 'justify-content-between', 'bd-highlight', 'border', 'shadow', 'p-1', 'mb-3', 'bg-white', 'rounded');
+        createFlexDivElem.classList.add('blockContent', 'd-flex', 'justify-content-between', 'bd-highlight', 'border', 'shadow', 'p-1', 'mb-3', 'bg-white', 'rounded');
         createDivElementForName.classList.add('p-2', 'col-2');
         createDivElementForDescription.classList.add('p-2', 'col-8');
-        createDivElementForQuality.classList.add('p-2', 'col-1');
+        createDivElementForQuality.classList.add('quality', 'p-2', 'col-1');
 
         createDivElementForName.innerText = item.name;
         createDivElementForDescription.innerHTML = item.description;
@@ -23,10 +28,58 @@ export function createItemsList(items) {
     })
 }
 
-export function getItemsForSearch(searchElement) {
-    const items = document.querySelectorAll('.d-flex', '.shadow');
-    document.querySelector('#search').oninput = () => {
+function setVisible(item) {
+    return visible => visible ? item.classList.add('d-lg-none') : item.classList.remove('d-lg-none');
+}
+
+function getTextFromName(item) {
+    return () => item.innerText.toLowerCase();
+}
+
+export function onSearchInputCase(callback) {
+    const items = document.querySelectorAll('.blockContent');
+    const sliceArr = [].slice.call(items);
+
+    const itemsForSearch = sliceArr.map(item => {
+        const itemChild = item.querySelector('.p-2', '.col-2');
+        return [
+            setVisible(item),
+            getTextFromName(itemChild),
+        ]
+    })
+
+    const searchInput = document.querySelector('#search');
+    searchInput.oninput = () => {
         let val = document.querySelector('#search').value.toLowerCase().trim();
-        searchElement(items, val);
+        callback(itemsForSearch, val);
     }
+}
+
+function getTextFromQuality(item) {
+    return () => item.innerText;
+}
+
+export function onClickFilterCase(callback) {
+    const dropDownButton = document.querySelectorAll('.dropdown-item');
+    const buttonView = document.querySelector('.btn-secondary');
+
+    const items = document.querySelectorAll('.blockContent');
+    const sliceArr = [].slice.call(items);
+
+
+    const itemsForFilter = sliceArr.map(item => {
+        const itemChild = item.querySelector('.quality');
+        return [
+            setVisible(item),
+            getTextFromQuality(itemChild),
+        ]
+    })
+
+    dropDownButton.forEach(item => {
+        item.onclick = () => {
+            const textInButton = item.innerText;
+            buttonView.innerText = textInButton;
+            callback(itemsForFilter, textInButton);
+        }
+    })
 }
