@@ -31,7 +31,7 @@ import { createItemsList, onSearchInputCase, addClassToTdElem, onClickFilterCase
 
     addClassToTdElem();
 
-    onSearchInputCase(searchElement);
+    await onSearchInputCase(searchElement);
 
-    onClickFilterCase(filterElement);
+    await onClickFilterCase(filterElement);
 })();
