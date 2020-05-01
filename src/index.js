@@ -9,11 +9,11 @@ import { createItemsList, onSearchInputCase, addClassToTdElem, onClickFilterCase
             itemsSearch.forEach(([setVisible, getText]) => {
                 if(getText().search(val) === -1) {
                     setVisible(true)
-                } 
+                }
             })
         } else  {
-            itemsSearch.forEach(([setVisible, getText]) => {
-                setVisible(getText().search(val) === -1);
+            itemsSearch.forEach(([setVisible]) => {
+                setVisible(false);
             })
         }
     };
