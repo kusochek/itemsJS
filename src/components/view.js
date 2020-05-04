@@ -45,7 +45,7 @@ function createItemsForSearch() {
     const items = document.querySelectorAll('.blockContent');
     const sliceArr = [].slice.call(items);
 
-    const itemsForSearch = sliceArr.map(item => {
+    return sliceArr.map(item => {
         const itemChildName = item.querySelector('.p-2', '.col-2');
         const itemChildQual = item.querySelector('.quality');
         return [
@@ -54,8 +54,6 @@ function createItemsForSearch() {
             getTextFromQuality(itemChildQual),
         ]
     })
-
-    return itemsForSearch;
 }
 
 const itemsForSearch = createItemsForSearch();
