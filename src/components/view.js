@@ -41,7 +41,7 @@ function getTextFromQuality(item) {
     return () => item.innerText;
 }
 
-export function getItemsForSearch() {
+function createItemsForSearch() {
     const items = document.querySelectorAll('.blockContent');
     const sliceArr = [].slice.call(items);
 
@@ -55,6 +55,12 @@ export function getItemsForSearch() {
         ]
     })
 
+    return itemsForSearch;
+}
+
+const itemsForSearch = createItemsForSearch();
+
+export function getItemsForSearch() {
     return itemsForSearch;
 }
 
