@@ -41,12 +41,8 @@ function getTextFromQuality(item) {
     return () => item.innerText;
 }
 
-export function onSearchInputCase(callback) {
+export function getItemsForSearch() {
     const items = document.querySelectorAll('.blockContent');
-    const buttonView = document.querySelector('.btn-secondary');
-    const dropDownButton = document.querySelectorAll('.dropdown-item');
-    const searchInput = document.querySelector('#search');
-
     const sliceArr = [].slice.call(items);
 
     const itemsForSearch = sliceArr.map(item => {
@@ -59,17 +55,24 @@ export function onSearchInputCase(callback) {
         ]
     })
 
+    return itemsForSearch;
+}
+
+export function onSearchInputCase(callback) {
+    const buttonView = document.querySelector('.btn-secondary');
+    const dropDownButton = document.querySelectorAll('.dropdown-item');
+    const searchInput = document.querySelector('#search');
 
     searchInput.oninput = () => {
         let val = searchInput.value.toLowerCase().trim();
-        callback(itemsForSearch, val);
+        callback(сallback, val);
     }
 
     dropDownButton.forEach(item => {
         item.onclick = () => {
             const textInButton = item.innerText;
             buttonView.innerText = textInButton;
-            callback(itemsForSearch, textInButton);
+            callback(callback, textInButton);
         }
     })
 }
