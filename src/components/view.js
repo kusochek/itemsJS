@@ -36,50 +36,66 @@ function getTextFromName(item) {
     return () => item.innerText.toLowerCase();
 }
 
-export function onSearchInputCase(callback) {
-    const items = document.querySelectorAll('.blockContent');
-    const sliceArr = [].slice.call(items);
-
-    const itemsForSearch = sliceArr.map(item => {
-        const itemChild = item.querySelector('.p-2', '.col-2');
-        return [
-            setVisible(item),
-            getTextFromName(itemChild),
-        ]
-    })
-
-    const searchInput = document.querySelector('#search');
-    searchInput.oninput = () => {
-        let val = document.querySelector('#search').value.toLowerCase().trim();
-        callback(itemsForSearch, val);
-    }
-}
 
 function getTextFromQuality(item) {
     return () => item.innerText;
 }
 
-export function onClickFilterCase(callback) {
-    const dropDownButton = document.querySelectorAll('.dropdown-item');
-    const buttonView = document.querySelector('.btn-secondary');
-
+export function onSearchInputCase(callback) {
     const items = document.querySelectorAll('.blockContent');
+    const buttonView = document.querySelector('.btn-secondary');
+    const dropDownButton = document.querySelectorAll('.dropdown-item');
+    const searchInput = document.querySelector('#search');
+
     const sliceArr = [].slice.call(items);
 
-
-    const itemsForFilter = sliceArr.map(item => {
-        const itemChild = item.querySelector('.quality');
+    const itemsForSearch = sliceArr.map(item => {
+        const itemChildName = item.querySelector('.p-2', '.col-2');
+        const itemChildQual = item.querySelector('.quality');
         return [
             setVisible(item),
-            getTextFromQuality(itemChild),
+            getTextFromName(itemChildName),
+            getTextFromQuality(itemChildQual),
         ]
     })
+
+
+    searchInput.oninput = () => {
+        let val = searchInput.value.toLowerCase().trim();
+        callback(itemsForSearch, val);
+    }
 
     dropDownButton.forEach(item => {
         item.onclick = () => {
             const textInButton = item.innerText;
             buttonView.innerText = textInButton;
-            callback(itemsForFilter, textInButton);
+            callback(itemsForSearch, textInButton);
         }
     })
 }
+
+
+// export function onClickFilterCase(callback) {
+//     const dropDownButton = document.querySelectorAll('.dropdown-item');
+//     const buttonView = document.querySelector('.btn-secondary');
+
+//     const items = document.querySelectorAll('.blockContent');
+//     const sliceArr = [].slice.call(items);
+
+
+//     const itemsForFilter = sliceArr.map(item => {
+//         const itemChild = item.querySelector('.quality');
+//         return [
+//             setVisible(item),
+//             getTextFromQuality(itemChild),
+//         ]
+//     })
+
+//     dropDownButton.forEach(item => {
+//         item.onclick = () => {
+//             const textInButton = item.innerText;
+//             buttonView.innerText = textInButton;
+//             callback(itemsForFilter, textInButton);
+//         }
+//     })
+// }
