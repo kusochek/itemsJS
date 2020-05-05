@@ -55,7 +55,6 @@ function createItemsForSearch() {
             getTextFromQuality(itemChildQual),
         ]
     })
-
 }
 
 const itemsForSearch = createItemsForSearch();
