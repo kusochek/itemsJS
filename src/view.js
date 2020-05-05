@@ -35,17 +35,18 @@ function setVisible(item) {
 function getTextFromName(item) {
     return () => item.innerText.toLowerCase();
 }
+document.g
 
 
 function getTextFromQuality(item) {
     return () => item.innerText;
 }
 
-export function getItemsForSearch() {
+function createItemsForSearch() {
     const items = document.querySelectorAll('.blockContent');
     const sliceArr = [].slice.call(items);
 
-    const itemsForSearch = sliceArr.map(item => {
+    return sliceArr.map(item => {
         const itemChildName = item.querySelector('.p-2', '.col-2');
         const itemChildQual = item.querySelector('.quality');
         return [
@@ -55,6 +56,11 @@ export function getItemsForSearch() {
         ]
     })
 
+}
+
+const itemsForSearch = createItemsForSearch();
+
+export function getItemsForSearch() {
     return itemsForSearch;
 }
 

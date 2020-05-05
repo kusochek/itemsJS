@@ -1,5 +1,5 @@
 import { items } from './data/items';
-import { createItemsList, onSearchInputCase, addClassToTdElem } from './components/view'
+import { createItemsList, onSearchInputCase, addClassToTdElem } from './view'
 
 (async() => {
     await createItemsList(items);
