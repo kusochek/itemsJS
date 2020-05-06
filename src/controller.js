@@ -1,51 +1,43 @@
 import { items } from './data/items';
-import { createItemsList, onSearchInputCase, addClassToTdElem, onClickFilterCase, createItemsForSearch } from './view';
+import { onSearchInputCase, addClassToTdElem, onClickFilterCase, createItemsForSearch, getItemsContainer } from './view';
 import { setName, setQuality, getQuality, getName } from './model';
+import ItemRow from './components/ItemRow'
 
-createItemsList(items);
+function init() {
+    const container = getItemsContainer();
+    const itemRows = items.map(item => {
+        const element = new ItemRow(item);
 
-function searchElement(itemsSearch, nam, qual) {
-    itemsSearch.forEach(([setVisible, getTextName, getTextQual]) => {
-        if( (getTextName().search(nam) !== -1 || nam === '') && (getTextQual().search(qual) !== -1 || qual === 'Все') ) {
-            setVisible(true)
-        } else {
-            setVisible(false)
-        }
-    })
+        element.append(container);
+
+        return element;
+    });
+
+
+    function updateItems() {
+        const name = getName();
+        const quality = getQuality();
+
+        itemRows.forEach(itemRow => {
+            const nameFits = itemRow.getName().search(name) !== -1 || name === '';
+            const qualityFits = itemRow.getQuality().search(quality) !== -1 || quality === 'Все';
+
+            if (nameFits && qualityFits) {
+                itemRow.show()
+            } else {
+                itemRow.hide();
+            }
+        })
+    };
+
+    onSearchInputCase((name) => {
+        setName(name);
+        updateItems();
+    });
+    onClickFilterCase((quality) => {
+        setQuality(quality);
+        updateItems();
+    });
 }
 
-const itemsForSearch = createItemsForSearch();
-
-function updateItems() {
-    const name = getName();
-    const quality = getQuality();
-
-    searchElement(itemsForSearch, name, quality);
-};
-
-onSearchInputCase((name) => {
-    setName(name);
-    updateItems();
-});
-onClickFilterCase((quality) => {
-    setQuality(quality);
-    updateItems();
-});
-addClassToTdElem();
-
-
-    // onClickFilterCase(searchElement);
-
-    // async function searchElement(itemsSearch, val) {
-    //     if(val !== 'Все' && val !== '') {
-    //         itemsSearch.forEach(([setVisible, getText]) => {
-    //             if(getText().search(val) === -1) {
-    //                 setVisible(true)
-    //             }
-    //         })
-    //     } else  {
-    //         itemsSearch.forEach(([setVisible]) => {
-    //             setVisible(false);
-    //         })
-    //     }
-    // };
+init();
