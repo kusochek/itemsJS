@@ -12,10 +12,10 @@ export function createItemsList(items) {
         const createDivElementForDescription = document.createElement('div');
         const createDivElementForQuality = document.createElement('div');
 
-        createFlexDivElem.classList.add('blockContent', 'd-flex', 'justify-content-between', 'bd-highlight', 'border', 'shadow', 'p-1', 'mb-3', 'bg-white', 'rounded');
-        createDivElementForName.classList.add('p-2', 'col-2');
-        createDivElementForDescription.classList.add('p-2', 'col-8');
-        createDivElementForQuality.classList.add('quality', 'p-2', 'col-1');
+        createFlexDivElem.classList.add('blockContent', 'row', 'justify-content-between', 'bd-highlight', 'border', 'shadow', 'p-1', 'mb-3', 'bg-white', 'rounded');
+        createDivElementForName.classList.add('p-2', 'col-sm-9', 'col-md-4', 'col-lg-2');
+        createDivElementForDescription.classList.add('p-2', 'col-sm-9','col-md-4','col-lg-8');
+        createDivElementForQuality.classList.add('quality', 'p-2', 'col-sm-9','col-md-4','col-lg-1');
 
         createDivElementForName.innerText = item.name;
         createDivElementForDescription.innerHTML = item.description;
@@ -29,20 +29,19 @@ export function createItemsList(items) {
 }
 
 function setVisible(item) {
-    return visible => visible ? item.classList.add('d-lg-none') : item.classList.remove('d-lg-none');
+    return visible => visible ? item.classList.remove('d-none') : item.classList.add('d-none');
 }
 
 function getTextFromName(item) {
     return () => item.innerText.toLowerCase();
 }
-document.g
 
 
 function getTextFromQuality(item) {
     return () => item.innerText;
 }
 
-function createItemsForSearch() {
+export function createItemsForSearch() {
     const items = document.querySelectorAll('.blockContent');
     const sliceArr = [].slice.call(items);
 
@@ -57,53 +56,25 @@ function createItemsForSearch() {
     })
 }
 
-const itemsForSearch = createItemsForSearch();
-
-export function getItemsForSearch() {
-    return itemsForSearch;
-}
-
 export function onSearchInputCase(callback) {
-    const buttonView = document.querySelector('.btn-secondary');
-    const dropDownButton = document.querySelectorAll('.dropdown-item');
     const searchInput = document.querySelector('#search');
 
     searchInput.oninput = () => {
         let val = searchInput.value.toLowerCase().trim();
-        callback(сallback, val);
+        callback(val);
     }
+}
+
+
+export function onClickFilterCase(callback) {
+    const dropDownButton = document.querySelectorAll('.dropdown-item');
+    const buttonView = document.querySelector('.btn-secondary');
 
     dropDownButton.forEach(item => {
         item.onclick = () => {
             const textInButton = item.innerText;
             buttonView.innerText = textInButton;
-            callback(callback, textInButton);
+            callback(textInButton);
         }
     })
 }
-
-
-// export function onClickFilterCase(callback) {
-//     const dropDownButton = document.querySelectorAll('.dropdown-item');
-//     const buttonView = document.querySelector('.btn-secondary');
-
-//     const items = document.querySelectorAll('.blockContent');
-//     const sliceArr = [].slice.call(items);
-
-
-//     const itemsForFilter = sliceArr.map(item => {
-//         const itemChild = item.querySelector('.quality');
-//         return [
-//             setVisible(item),
-//             getTextFromQuality(itemChild),
-//         ]
-//     })
-
-//     dropDownButton.forEach(item => {
-//         item.onclick = () => {
-//             const textInButton = item.innerText;
-//             buttonView.innerText = textInButton;
-//             callback(itemsForFilter, textInButton);
-//         }
-//     })
-// }

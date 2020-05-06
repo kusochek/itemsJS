@@ -15,11 +15,12 @@
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">Магические предметы</a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Магические предметы</a>
+        </div>
+        <ul class="navbar-nav pr-1">
             <li class="nav-item dropdown">
-                <button class="btn btn-secondary dropdown-toggle mr-2 ml" type="button" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Вид
                 </button>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -35,16 +36,14 @@
             </li>
         </ul>
         <form class="form-inline">
-            <input class="form-control mr-sm-2" id="search" type="search" value="" placeholder="Search" aria-label="Search">
+            <input class="form-control" id="search" type="search" value="" placeholder="Search" aria-label="Search">
         </form>
-    </div>
-
   </nav>
-  <div class="items-scroll">
-      <div class="d-flex justify-content-between bd-highlight border bg-light">
-          <div class="p-2 col-2 bd-highlight">Название</div>
-          <div class="p-2 col-6 bd-highlight">Описание</div>
-          <div class="p-2 col-1 bd-highlight">Вид</div>
+  <div class="items-scroll container-fluid">
+      <div class="d-flex justify-content-between bd-highlight border bg-light row">
+          <div class="p-2 col-sm-9 col-md-4 col-lg-2 bd-highlight">Название</div>
+          <div class="p-2 col-sm-9 col-md-4 col-lg-6 bd-highlight">Описание</div>
+          <div class="p-2 col-sm-9 col-md-4 col-lg-1 bd-highlight">Вид</div>
       </div>
   </div>
 

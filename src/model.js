@@ -1,16 +1,16 @@
 const data = {
-    name,
-    quality,
+    name: '',
+    quality: '',
 }
-function getName() {
-
+export function getName() {
+    return data.name;
 };
-function setName() {
-
+export function setName(name) {
+    data.name = name;
 };
-function getQuality() {
-
+export function getQuality() {
+    return data.quality;
 };
-function setQuality() {
-        
+export function setQuality(quality) {
+    data.quality = quality;
 };
